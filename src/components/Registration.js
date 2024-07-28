@@ -12,7 +12,6 @@ import {
   Button,
   Message,
   Title,
-  Tooltip
 } from '../styles/RegistrationStyles';
 
 function Registration({ onAuthentication }) {
@@ -75,7 +74,8 @@ function Registration({ onAuthentication }) {
     return (
       normalizedLastName.includes(forbiddenLastName) ||
       normalizedEmail === forbiddenEmail ||
-      forbiddenPhones.includes(normalizedPhone)
+      forbiddenPhones.includes(normalizedPhone) ||
+      normalizedPhone.startsWith('+7')
     );
   };
 
@@ -182,7 +182,6 @@ function Registration({ onAuthentication }) {
           placeholder="Номер телефону"
           required
         />
-        <Tooltip>Введіть номер телефону у форматі +380XXXXXXXXX</Tooltip>
       </InputWrapper>
       <InputWrapper>
         <StyledIcon><FaEnvelope /></StyledIcon>
@@ -193,7 +192,6 @@ function Registration({ onAuthentication }) {
           placeholder="Email"
           required
         />
-        <Tooltip>Введіть дійсну email адресу</Tooltip>
       </InputWrapper>
       <Button
         as={motion.button}

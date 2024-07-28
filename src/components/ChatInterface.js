@@ -16,6 +16,11 @@ const ChatContainer = styled.div`
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 600px) {
+    height: 90vh;
+    border-radius: 0;
+  }
 `;
 
 const MessagesContainer = styled.div`
@@ -36,6 +41,10 @@ const MessagesContainer = styled.div`
 
   &::-webkit-scrollbar-track {
     background-color: rgba(30, 30, 45, 0.2);
+  }
+
+  @media (max-width: 600px) {
+    padding: 10px;
   }
 `;
 
@@ -79,15 +88,25 @@ const Message = styled.div`
   em {
     font-style: italic;
   }
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
 `;
 
 const InputContainer = styled.div`
   display: flex;
   padding: 15px;
   background-color: rgba(30, 30, 45, 0.9);
+
+  @media (max-width: 600px) {
+    padding: 10px;
+  }
 `;
 
-const Input = styled.input`
+const TextArea = styled.textarea`
   flex-grow: 1;
   padding: 12px 15px;
   border: none;
@@ -95,23 +114,34 @@ const Input = styled.input`
   background-color: rgba(255, 255, 255, 0.1);
   color: #E0E0E0;
   font-size: 16px;
+  resize: none;
+  overflow: hidden;
+  min-height: 40px;
+  max-height: 150px;
 
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px #8A2BE2;
   }
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 15px;
+  }
 `;
 
 const Button = styled.button`
-  padding: 12px 20px;
+  padding: 10px 15px;
   margin-left: 10px;
   border: none;
   border-radius: 20px;
   background-color: #8A2BE2;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  flex-shrink: 0;
 
   &:hover {
     background-color: #4B0082;
@@ -120,6 +150,13 @@ const Button = styled.button`
   &:disabled {
     background-color: #666;
     cursor: not-allowed;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+    padding: 8px 10px;
+    margin-left: 5px;
+    border-radius: 15px;
   }
 `;
 
@@ -144,7 +181,7 @@ function formatMessage(content) {
     } else {
       const formattedText = paragraph
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>');
+        .replace(/\*(.*?)\*\*/g, '<em>$1</em>');
       return <p key={index} dangerouslySetInnerHTML={{__html: formattedText}} />;
     }
   });
@@ -155,6 +192,7 @@ function ChatInterface({ user }) {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
+  const textAreaRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -236,10 +274,31 @@ function ChatInterface({ user }) {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !isLoading) {
+    if (e.key === 'Enter' && !isLoading && !e.shiftKey) {
+      e.preventDefault();
       sendMessage();
     }
   };
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+    textAreaRef.current.style.height = 'auto';
+    textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
+  };
+
+  const handleWheel = (e) => {
+    if (textAreaRef.current && textAreaRef.current.contains(e.target)) {
+      e.preventDefault();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
 
   return (
     <ChatContainer>
@@ -253,10 +312,10 @@ function ChatInterface({ user }) {
         <div ref={messagesEndRef} />
       </MessagesContainer>
       <InputContainer>
-        <Input
-          type="text"
+        <TextArea
+          ref={textAreaRef}
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={handleInputChange}
           onKeyPress={handleKeyPress}
           placeholder="Введіть ваше повідомлення..."
           disabled={isLoading}

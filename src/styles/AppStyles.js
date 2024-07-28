@@ -1,13 +1,21 @@
 import styled, { keyframes, createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  body {
+  html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     background-color: #0F0F1A;
     color: #E0E0E0;
+    height: 100%; /* Ensure the html and body take full height */
+    overflow: hidden; /* Prevent scrolling */
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 `;
 
@@ -18,14 +26,14 @@ const float = keyframes`
 `;
 
 export const AppContainer = styled.div`
-  min-height: 100vh;
+  flex: 1; /* Ensures the container takes the remaining height */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Prevent internal scrolling */
 `;
 
 export const Title = styled.h1`
@@ -54,4 +62,4 @@ export const Signature = styled.div`
   text-align: center;
   margin-top: -1rem;
   z-index: 1;
-`;
+`; 

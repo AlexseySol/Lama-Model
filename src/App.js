@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ChatInterface from './components/ChatInterface';
 import Registration from './components/Registration';
 import { GlobalStyle, AppContainer, Title, BackgroundSymbol, Signature } from '../src/styles/AppStyles';
@@ -7,9 +7,24 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    // Check for user data in localStorage
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      setIsAuthenticated(true);
+    }
+
+    // Clear user data from localStorage when component unmounts
+    return () => {
+      localStorage.removeItem('user');
+    };
+  }, []);
+
   const handleAuthentication = (userData) => {
     setIsAuthenticated(true);
     setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
   };
 
   const aiSymbols = ['🧠', '🤖', '💡', '🔬', '📊', '🖥️', '🔍', '🎛️', '🔮', '⚙️'];

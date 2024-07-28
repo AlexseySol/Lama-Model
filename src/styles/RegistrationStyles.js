@@ -1,13 +1,21 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  body {
+  html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
     background-color: #0F0F1A;
     color: #E0E0E0;
+    height: 100%; /* Ensure the html and body take full height */
+    overflow: hidden; /* Prevent scrolling */
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 `;
 
@@ -17,6 +25,8 @@ export const Container = styled.div`
   align-items: center;
   min-height: 100vh;
   padding: 20px;
+  position: relative;
+  overflow: hidden; /* Prevent internal scrolling */
 `;
 
 export const StyledForm = styled.form`
@@ -91,6 +101,7 @@ export const BackgroundSymbol = styled.div`
   color: rgba(138, 43, 226, 0.2);
   left: ${props => props.left};
   top: ${props => props.top};
+  pointer-events: none; /* Prevent interaction */
 `;
 
 export const Tooltip = styled.span`
@@ -110,4 +121,4 @@ export const Tooltip = styled.span`
   ${InputWrapper}:hover & {
     opacity: 1;
   }
-`;
+`; 
