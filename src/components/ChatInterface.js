@@ -16,7 +16,7 @@ const ChatContainer = styled.div`
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
 
   @media (max-width: 600px) {
     height: 90vh;
@@ -30,7 +30,7 @@ const MessagesContainer = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -121,11 +121,11 @@ const TextArea = styled.textarea`
   overflow: hidden;
   min-height: 40px;
   max-height: 150px;
-  -webkit-text-size-adjust: 100%;  /* Prevent zoom on focus for iOS */
-  -moz-text-size-adjust: 100%;  /* Prevent zoom on focus for Android */
-  text-size-adjust: 100%;  /* Prevent zoom on focus */
-  -webkit-user-modify: read-write-plaintext-only; /* iOS */
-  user-modify: read-write-plaintext-only; /* Android */
+  -webkit-text-size-adjust: 100%;  
+  -moz-text-size-adjust: 100%;  
+  text-size-adjust: 100%;  
+  -webkit-user-modify: read-write-plaintext-only;
+  user-modify: read-write-plaintext-only;
 
   &:focus {
     outline: none;
@@ -148,7 +148,6 @@ const Button = styled.button`
   color: white;
   font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   flex-shrink: 0;
 
   &:hover {
@@ -166,7 +165,8 @@ const Button = styled.button`
     margin-left: 5px;
     border-radius: 15px;
   }
-`;
+`; 
+
 
 function formatMessage(content) {
   const paragraphs = content.split('\n\n');
