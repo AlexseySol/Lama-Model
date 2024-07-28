@@ -36,11 +36,13 @@ export const StyledForm = styled.form`
   width: 100%;
   max-width: 400px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Ensure padding is included in width */
 `;
 
 export const InputWrapper = styled.div`
   position: relative;
   margin-bottom: 1.5rem;
+  box-sizing: border-box; /* Ensure padding is included in width */
 `;
 
 export const StyledIcon = styled.span`
@@ -59,6 +61,7 @@ export const Input = styled.input`
   background: rgba(255, 255, 255, 0.1);
   color: #E0E0E0;
   font-size: 1rem;
+  box-sizing: border-box; /* Ensure padding is included in width */
 
   &:focus {
     outline: none;
@@ -76,6 +79,7 @@ export const Button = styled.button`
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease;
+  box-sizing: border-box; /* Ensure padding is included in width */
 
   &:hover {
     background: #4B0082;
@@ -87,18 +91,24 @@ export const Message = styled.p`
   border-radius: 5px;
   margin-top: 1rem;
   font-size: 0.9rem;
+  box-sizing: border-box; /* Ensure padding is included in width */
 `;
 
 export const Title = styled.h2`
   text-align: center;
   color: #8A2BE2;
   margin-bottom: 1.5rem;
+  font-size: 1.5rem; /* Adjust font size for responsiveness */
+  
+  @media (max-width: 480px) {
+    font-size: 1.2rem; /* Responsive font size */
+  }
 `;
 
 export const BackgroundSymbol = styled.div`
   position: absolute;
   font-size: ${props => props.size || '20px'};
-  color: rgba(138, 43, 226, 0.2);
+  color: rgba(138, 43, 226, 0.1); /* Transparency set to 10% */
   left: ${props => props.left};
   top: ${props => props.top};
   pointer-events: none; /* Prevent interaction */
@@ -121,4 +131,4 @@ export const Tooltip = styled.span`
   ${InputWrapper}:hover & {
     opacity: 1;
   }
-`; 
+`;
