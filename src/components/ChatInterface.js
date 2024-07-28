@@ -98,6 +98,7 @@ const Message = styled.div`
 
 const InputContainer = styled.div`
   display: flex;
+  justify-content: center;
   padding: 15px;
   background-color: rgba(30, 30, 45, 0.9);
 
@@ -118,6 +119,9 @@ const TextArea = styled.textarea`
   overflow: hidden;
   min-height: 40px;
   max-height: 150px;
+  -webkit-text-size-adjust: 100%;  /* Prevent zoom on focus for iOS */
+  -moz-text-size-adjust: 100%;  /* Prevent zoom on focus for Android */
+  text-size-adjust: 100%;  /* Prevent zoom on focus */
 
   &:focus {
     outline: none;

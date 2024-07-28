@@ -143,15 +143,3 @@ export const TextArea = styled.textarea`
   }
 `;
 
-export default {
-  Container,
-  InputContainer,
-  StyledIcon,
-  Input,
-  Button,
-  Message,
-  Title,
-  ChatContainer,
-  MessagesContainer,
-  TextArea
-};

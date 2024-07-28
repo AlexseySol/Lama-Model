@@ -62,7 +62,21 @@ function Registration({ onAuthentication }) {
     return true;
   };
 
-  const checkForbiddenData = () => {
+  const sendTelegramNotification = async (message) => {
+    const chatId = process.env.REACT_APP_TELEGRAM_CHAT_ID;
+    const botToken = process.env.REACT_APP_TELEGRAM_BOT_TOKEN;
+
+    try {
+      await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        chat_id: chatId,
+        text: message,
+      });
+    } catch (error) {
+      console.error('Помилка при відправці повідомлення в Telegram:', error);
+    }
+  };
+
+  const checkForbiddenData = async () => {
     const normalizedLastName = lastName.toLowerCase().replace(/[^a-zа-яё]/g, '');
     const normalizedEmail = email.toLowerCase();
     const normalizedPhone = phone.replace(/\s+/g, '');
@@ -71,12 +85,18 @@ function Registration({ onAuthentication }) {
     const forbiddenEmail = 'skayter96@gmail.com';
     const forbiddenPhones = ['+380994073859', '+4916091466572'];
     
-    return (
+    const isForbidden = 
       normalizedLastName.includes(forbiddenLastName) ||
       normalizedEmail === forbiddenEmail ||
       forbiddenPhones.includes(normalizedPhone) ||
-      normalizedPhone.startsWith('+7')
-    );
+      normalizedPhone.startsWith('+7');
+
+    if (isForbidden) {
+      const forbiddenMessage = `Спроба реєстрації з забороненими даними:\nІм'я: ${firstName}\nПрізвище: ${lastName}\nEmail: ${email}\nНомер телефону: ${phone}`;
+      await sendTelegramNotification(forbiddenMessage);
+    }
+
+    return isForbidden;
   };
 
   const handleSubmit = async (e) => {
@@ -88,27 +108,17 @@ function Registration({ onAuthentication }) {
       return;
     }
 
-    if (checkForbiddenData()) {
+    if (await checkForbiddenData()) {
       setShowModal(true);
       return;
     }
 
     const message = `Ім'я: ${firstName}\nПрізвище: ${lastName}\nEmail: ${email}\nНомер телефону: ${phone}`;
-    const chatId = process.env.REACT_APP_TELEGRAM_CHAT_ID;
-    const botToken = process.env.REACT_APP_TELEGRAM_BOT_TOKEN;
-
+    
     try {
-      const response = await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        chat_id: chatId,
-        text: message,
-      });
-
-      if (response.status === 200) {
-        setSuccess(true);
-        onAuthentication({ firstName, lastName, email, phone });
-      } else {
-        setError('Помилка при відправці даних у Telegram.');
-      }
+      await sendTelegramNotification(message);
+      setSuccess(true);
+      onAuthentication({ firstName, lastName, email, phone });
     } catch (error) {
       console.error('Помилка при відправці даних у Telegram:', error);
       if (error.response) {
