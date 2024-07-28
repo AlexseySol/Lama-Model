@@ -47,3 +47,11 @@ export const BackgroundSymbol = styled.div`
   left: ${props => props.left};
   top: ${props => props.top};
 `;
+
+export const Signature = styled.div`
+  font-size: 1.2rem;
+  color: #8A2BE2;
+  text-align: center;
+  margin-top: -1rem;
+  z-index: 1;
+`;

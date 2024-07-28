@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ChatInterface from './components/ChatInterface';
 import Registration from './components/Registration';
-import { GlobalStyle, AppContainer, Title, BackgroundSymbol } from '../src/styles/AppStyles';
+import { GlobalStyle, AppContainer, Title, BackgroundSymbol, Signature } from '../src/styles/AppStyles';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,7 +29,8 @@ function App() {
             {symbol}
           </BackgroundSymbol>
         ))}
-        <Title>ШІ Чат Проект</Title>
+        <Title>ШІ Чат</Title>
+        <Signature>By Олексій Соляной</Signature>
         {!isAuthenticated ? (
           <Registration onAuthentication={handleAuthentication} />
         ) : (
