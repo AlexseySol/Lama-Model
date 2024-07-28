@@ -5,8 +5,8 @@ import { FaUser, FaEnvelope, FaPhone } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import anime from 'animejs/lib/anime.es.js';
 import {
-  StyledForm,
-  InputWrapper,
+  Container as StyledForm,
+  InputContainer as InputWrapper,
   StyledIcon,
   Input,
   Button,

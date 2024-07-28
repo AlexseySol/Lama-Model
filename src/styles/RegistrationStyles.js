@@ -1,5 +1,81 @@
 import styled from 'styled-components';
 
+export const Container = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: rgba(30, 30, 45, 0.8);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+`;
+
+export const InputContainer = styled.div`
+  position: relative;
+  width: 100%;
+  margin-bottom: 1.5rem;
+`;
+
+export const StyledIcon = styled.span`
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary-color);
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+  border: none;
+  border-radius: 5px;
+  background: var(--input-background);
+  color: var(--text-color);
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-color);
+  }
+`;
+
+export const Button = styled.button`
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  background: var(--primary-color);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: var(--secondary-color);
+  }
+`;
+
+export const Message = styled.p`
+  padding: 0.8rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  width: 100%;
+  text-align: center;
+`;
+
+export const Title = styled.h2`
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+  }
+`;
+
 export const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -42,19 +118,8 @@ export const MessagesContainer = styled.div`
   }
 `;
 
-export const InputContainer = styled.div`
-  display: flex;
-  padding: 15px;
-  background-color: rgba(30, 30, 45, 0.9);
-  align-items: flex-end;
-
-  @media (max-width: 600px) {
-    padding: 10px;
-  }
-`;
-
 export const TextArea = styled.textarea`
-  flex-grow: 1;
+  width: 100%;
   padding: 12px 15px;
   border: none;
   border-radius: 20px;
@@ -62,14 +127,13 @@ export const TextArea = styled.textarea`
   color: #E0E0E0;
   font-size: 16px;
   resize: none;
-  overflow-y: auto;
   min-height: 40px;
   max-height: 150px;
-  line-height: 1.5;
+  overflow-y: auto;
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #8A2BE2;
+    box-shadow: 0 0 0 2px var(--primary-color);
   }
 
   @media (max-width: 600px) {
@@ -79,32 +143,15 @@ export const TextArea = styled.textarea`
   }
 `;
 
-export const Button = styled.button`
-  padding: 10px 15px;
-  margin-left: 10px;
-  border: none;
-  border-radius: 20px;
-  background-color: #8A2BE2;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  flex-shrink: 0;
-  align-self: flex-end;
-
-  &:hover {
-    background-color: #4B0082;
-  }
-
-  &:disabled {
-    background-color: #666;
-    cursor: not-allowed;
-  }
-
-  @media (max-width: 600px) {
-    font-size: 12px;
-    padding: 8px 10px;
-    margin-left: 5px;
-    border-radius: 15px;
-  }
-`;
+export default {
+  Container,
+  InputContainer,
+  StyledIcon,
+  Input,
+  Button,
+  Message,
+  Title,
+  ChatContainer,
+  MessagesContainer,
+  TextArea
+};
