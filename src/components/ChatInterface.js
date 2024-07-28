@@ -225,11 +225,11 @@ function ChatInterface({ user }) {
           frequency_penalty: 0,
           temperature: 0,
           messages: [
+            ...messages.map(msg => ({ role: msg.type === 'user' ? 'user' : 'assistant', content: msg.content })),
             { role: "user", content: message }
           ]
         })
       });
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
