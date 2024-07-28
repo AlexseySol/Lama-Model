@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ChatInterface from './components/ChatInterface';
 import Registration from './components/Registration';
-import { GlobalStyle, AppContainer, Title, BackgroundSymbol, Signature } from '../src/styles/AppStyles';
+import { AppContainer, Title, BackgroundSymbol, Signature } from './styles/AppStyles';
+import { GlobalStyle } from './styles/GlobalStyles';
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

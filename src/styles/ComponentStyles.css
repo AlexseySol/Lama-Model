@@ -1,3 +1,4 @@
+/* Было: index.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
@@ -18,7 +19,7 @@
 
 html, body {
   height: 100%;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden;
 }
 
 body {
@@ -30,6 +31,9 @@ body {
   flex-direction: column;
 }
 
+/* Стало: ComponentStyles.css */
+/* Импорт шрифта и глобальные стили перенесены в GlobalStyles.js */
+
 .container {
   flex: 1;
   display: flex;
@@ -37,7 +41,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  overflow: hidden; /* Prevent internal scrolling */
+  overflow: hidden;
 }
 
 .app-title {
@@ -57,7 +61,7 @@ body {
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Prevent internal scrolling */
+  overflow: hidden;
 }
 
 .chat-messages {
@@ -139,61 +143,6 @@ body {
   font-style: italic;
   color: #888;
   margin-top: 20px;
-}
-
-.registration {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.registration h2 {
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.registration form {
-  display: flex;
-  flex-direction: column;
-}
-
-.registration input {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  background-color: var(--background-color);
-}
-
-.registration button {
-  padding: 15px;
-  background-color: var(--primary-color);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.registration button:hover {
-  background-color: #5f4dd1;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.error {
-  color: var(--error-color);
-  margin-bottom: 15px;
-  font-weight: 500;
 }
 
 @media (max-width: 768px) {
