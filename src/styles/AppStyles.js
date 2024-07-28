@@ -50,7 +50,8 @@ export const Title = styled.h1`
 export const BackgroundSymbol = styled.div`
   position: absolute;
   font-size: ${props => props.size || '20px'};
-  color: rgba(138, 43, 226, 0.1); /* Transparency set to 10% */
+  color: #8A2BE2; /* Set a solid color */
+  opacity: 0.1; /* Set the transparency */
   animation: ${float} ${props => props.duration || '10s'} infinite ease-in-out;
   left: ${props => props.left};
   top: ${props => props.top};
