@@ -1,110 +1,110 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const ChatContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-  position: relative;
+  flex-direction: column;
+  height: 80vh;
+  width: 100%;
+  max-width: 800px;
+  background-color: rgba(30, 30, 45, 0.8);
+  border-radius: 15px;
   overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 600px) {
+    height: 90vh;
+    border-radius: 0;
+  }
 `;
 
-export const StyledForm = styled.form`
-  background: rgba(30, 30, 45, 0.8);
-  padding: 2rem;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: var(--box-shadow);
+export const MessagesContainer = styled.div`
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(138, 43, 226, 0.4);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba(30, 30, 45, 0.2);
+  }
+
+  @media (max-width: 600px) {
+    padding: 10px;
+  }
 `;
 
-export const InputWrapper = styled.div`
-  position: relative;
-  margin-bottom: 1.5rem;
+export const InputContainer = styled.div`
+  display: flex;
+  padding: 15px;
+  background-color: rgba(30, 30, 45, 0.9);
+  align-items: flex-end;
+
+  @media (max-width: 600px) {
+    padding: 10px;
+  }
 `;
 
-export const StyledIcon = styled.span`
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--primary-color);
-`;
-
-export const Input = styled.input`
-  width: 100%;
-  padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+export const TextArea = styled.textarea`
+  flex-grow: 1;
+  padding: 12px 15px;
   border: none;
-  border-radius: 5px;
-  background: var(--input-background);
-  color: var(--text-color);
-  font-size: 1rem;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #E0E0E0;
+  font-size: 16px;
+  resize: none;
+  overflow-y: auto;
+  min-height: 40px;
+  max-height: 150px;
+  line-height: 1.5;
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--primary-color);
+    box-shadow: 0 0 0 2px #8A2BE2;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 15px;
   }
 `;
 
 export const Button = styled.button`
-  width: 100%;
-  padding: 0.8rem;
+  padding: 10px 15px;
+  margin-left: 10px;
   border: none;
-  border-radius: 5px;
-  background: var(--primary-color);
+  border-radius: 20px;
+  background-color: #8A2BE2;
   color: white;
-  font-size: 1rem;
+  font-size: 14px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+  align-self: flex-end;
 
   &:hover {
-    background: var(--secondary-color);
+    background-color: #4B0082;
   }
-`;
 
-export const Message = styled.p`
-  padding: 0.8rem;
-  border-radius: 5px;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-`;
-
-export const Title = styled.h2`
-  text-align: center;
-  color: var(--primary-color);
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-  
-  @media (max-width: 480px) {
-    font-size: 1.2rem;
+  &:disabled {
+    background-color: #666;
+    cursor: not-allowed;
   }
-`;
 
-export const BackgroundSymbol = styled.div`
-  position: absolute;
-  font-size: ${props => props.size || '20px'};
-  color: rgba(138, 43, 226, 0.1);
-  left: ${props => props.left};
-  top: ${props => props.top};
-  pointer-events: none;
-`;
-
-export const Tooltip = styled.span`
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 12px;
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-  z-index: 10;
-
-  ${InputWrapper}:hover & {
-    opacity: 1;
+  @media (max-width: 600px) {
+    font-size: 12px;
+    padding: 8px 10px;
+    margin-left: 5px;
+    border-radius: 15px;
   }
 `;
