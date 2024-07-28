@@ -58,12 +58,12 @@ const Message = styled.div`
   font-size: 16px;
   ${props => props.type === 'user' ? `
     align-self: flex-end;
-    background-color: #4B0082;
+    background-color: var(--secondary-color);
     color: white;
     border-bottom-right-radius: 4px;
   ` : `
     align-self: flex-start;
-    background-color: #8A2BE2;
+    background-color: var(--primary-color);
     color: white;
     border-bottom-left-radius: 4px;
   `}
@@ -112,20 +112,20 @@ const TextArea = styled.textarea`
   padding: 12px 15px;
   border: none;
   border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #E0E0E0;
+  background-color: var(--input-background);
+  color: var(--text-color);
   font-size: 16px;
   resize: none;
   overflow: hidden;
   min-height: 40px;
   max-height: 150px;
-  -webkit-text-size-adjust: 100%;  /* Prevent zoom on focus for iOS */
-  -moz-text-size-adjust: 100%;  /* Prevent zoom on focus for Android */
-  text-size-adjust: 100%;  /* Prevent zoom on focus */
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #8A2BE2;
+    box-shadow: 0 0 0 2px var(--primary-color);
   }
 
   @media (max-width: 600px) {
@@ -140,7 +140,7 @@ const Button = styled.button`
   margin-left: 10px;
   border: none;
   border-radius: 20px;
-  background-color: #8A2BE2;
+  background-color: var(--primary-color);
   color: white;
   font-size: 14px;
   cursor: pointer;
@@ -148,7 +148,7 @@ const Button = styled.button`
   flex-shrink: 0;
 
   &:hover {
-    background-color: #4B0082;
+    background-color: var(--secondary-color);
   }
 
   &:disabled {
@@ -163,6 +163,7 @@ const Button = styled.button`
     border-radius: 15px;
   }
 `;
+
 
 function formatMessage(content) {
   const paragraphs = content.split('\n\n');

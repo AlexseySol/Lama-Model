@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
   :root {
     --primary-color: #8A2BE2;
     --secondary-color: #4B0082;
@@ -8,6 +10,8 @@ export const GlobalStyle = createGlobalStyle`
     --text-color: #E0E0E0;
     --input-background: rgba(255, 255, 255, 0.1);
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --error-color: #d63031;
+    --success-color: #00b894;
   }
 
   * {
@@ -35,7 +39,4 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-// Удаляем этот комментарий и дополнительный экспорт
-// // Изменяем экспорт по умолчанию на именованный экспорт
-// // export default GlobalStyle;
-// export { GlobalStyle };
+// AppStyles.js
