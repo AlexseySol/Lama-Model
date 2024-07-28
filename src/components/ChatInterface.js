@@ -167,7 +167,6 @@ const Button = styled.button`
   }
 `; 
 
-
 function formatMessage(content) {
   const paragraphs = content.split('\n\n');
   
@@ -203,7 +202,7 @@ function ChatInterface({ user }) {
   const textAreaRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView();
   };
 
   useEffect(scrollToBottom, [messages]);
