@@ -217,7 +217,7 @@ function ChatInterface({ user }) {
           "Authorization": `Bearer ${FIREWORKS_API_KEY}`
         },
         body: JSON.stringify({
-          model: "accounts/fireworks/models/llama-v3p1-405b-instruct",
+          model: "accounts/fireworks/models/llama-v3p1-8b-instruct",
           max_tokens: 16384,
           top_p: 1,
           top_k: 40,
